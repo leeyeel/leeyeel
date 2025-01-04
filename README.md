@@ -4,7 +4,7 @@
 
 以及长时间的音视频开发
 
-虽然年纪大了，但还是喜欢折腾
+虽然年纪大了，但还是喜欢折腾，做无用的东西
 
 <img src="https://github-profile-trophy.vercel.app/?username=leeyeel&theme=tokyonight&column=7&no-frame=true" alt="trophy"/>
 
