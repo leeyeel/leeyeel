@@ -1,16 +1,23 @@
-## Hi there 👋
+# 🌟 Welcome to leeyeel's Profile
 
-<!--
-**leeyeel/leeyeel** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+<img src="https://github-profile-trophy.vercel.app/?username=leeyeel&theme=tokyonight&column=7&no-frame=true" alt="trophy"/>
 
-Here are some ideas to get you started:
+## 🔧 Technologies & Tools
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+<details open>
+<summary><b>Languages</b></summary>
+
+[![My Skills](https://skillicons.dev/icons?i=js,c,cpp,py,go,qt,fortran)](https://skillicons.dev)
+</details>
+
+<details open>
+<summary><b>Development & Tools</b></summary>
+
+[![My Skills](https://skillicons.dev/icons?i=vscode,idea,pycharm,clion,git,sourceinsight,github,gitlab,docker,nginx,vim,npm)](https://skillicons.dev)
+</details>
+
+<details open>
+<summary><b>Other</b></summary>
+
+[![My Skills](https://skillicons.dev/icons?i=arduino,blender,raspberrypi,linux,ubuntu,kali,pytorch,anaconda)](https://skillicons.dev)
+</details>
