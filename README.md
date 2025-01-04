@@ -9,17 +9,17 @@
 <img src="https://github-profile-trophy.vercel.app/?username=leeyeel&theme=tokyonight&column=7&no-frame=true" alt="trophy"/>
 
 
-## 🔧 技能及工具 
+## 🔧 技术栈  
 
 <details open> 
-<summary><b>Languages</b></summary> 
+<summary><b>语言</b></summary> 
 
 [![My Skills](https://skillicons.dev/icons?i=c,cpp,py,go,qt,js,latex,fortran)](https://skillicons.dev)
 
 </details> 
 
 <details open> 
-<summary><b>Development & Tools</b></summary> 
+<summary><b>部分开发工具</b></summary> 
 
 [![My Skills](https://skillicons.dev/icons?i=vim,neovim,vscode,git,cmake,github,docker)](https://skillicons.dev)
 
