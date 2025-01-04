@@ -13,11 +13,11 @@
 <details open>
 <summary><b>Development & Tools</b></summary>
 
-[![My Skills](https://skillicons.dev/icons?i=vscode,idea,pycharm,clion,git,sourceinsight,github,gitlab,docker,nginx,vim,npm)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=vscode,git,cmake,github,docker,vim,neovim)](https://skillicons.dev)
 </details>
 
 <details open>
 <summary><b>Other</b></summary>
 
-[![My Skills](https://skillicons.dev/icons?i=arduino,blender,raspberrypi,linux,ubuntu,kali,pytorch,anaconda)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=blender,linux)](https://skillicons.dev)
 </details>
