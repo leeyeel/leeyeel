@@ -12,27 +12,3 @@
 还是喜欢折腾，做无用的东西
 
 <img src="https://github-profile-trophy.vercel.app/?username=leeyeel&theme=tokyonight&column=7&no-frame=true" alt="trophy"/>
-
-
-## 🔧 技术栈  
-
-<details open> 
-<summary><b>Language</b></summary> 
-
-[![My Skills](https://skillicons.dev/icons?i=c,cpp,py,go,qt,js,latex,fortran)](https://skillicons.dev)
-
-</details> 
-
-<details open> 
-<summary><b>Develepment Tools</b></summary> 
-
-[![My Skills](https://skillicons.dev/icons?i=vim,neovim,vscode,git,cmake,github,docker)](https://skillicons.dev)
-
-</details> 
-
-<details open> 
-<summary><b>Other</b></summary> 
-
-[![My Skills](https://skillicons.dev/icons?i=blender,linux)](https://skillicons.dev)
-
-</details> 
