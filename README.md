@@ -1,16 +1,12 @@
-# 🌟 Hi ~  
+### About me
 
-A full-stack engineer with a stronger expertise in audio and video codec development.
-
-I specialize in high-energy physics and have worked on various projects, 
-
-including the development of Battery Management Systems(BMS) for electric vehicles, 
-
-Linux driver development for IP Camera(IPC), 
-
-and log-term experience in audio and video development.
-
-I still enjoy tinkering around and creating seemingly "useless" things.
+- 💻 Full-stack engineer with expertise in audio/video codecs 
+- 📚 Experienced in EV Battery Management Systems (BMS),
+  - Linux driver development for IP Cameras,
+  - and long-term audio/video projects.
+- 🔥 Passionate about tinkering and building “useless” but fun things.
+- 📖 Blog [blog.whatsroot.xyz](https://blog.whatsroot.xyz)  
+- 📩 Contact me: [sending me an email](mailto:mumuli52@gmail.com)
 
 
-<img src="https://github-profile-trophy.vercel.app/?username=leeyeel&theme=tokyonight&column=7&no-frame=true" alt="trophy"/>
+![li.yao GitHub stats](https://github-readme-stats.vercel.app/api?username=leeyeel&count_private=true)
