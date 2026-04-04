@@ -1,5 +1,5 @@
 <a href="https://blog.whatsroot.xyz">
-  <img align="right" src="https://github-readme-stats.vercel.app/api?username=leeyeel&count_private=true&show_icons=true&hide_border=true" />
+  <img align="right" src="./stats.svg" />
 </a>
 
 - 💻 Full-stack engineer with expertise in audio/video codecs 
