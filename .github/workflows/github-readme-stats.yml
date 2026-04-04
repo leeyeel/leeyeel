@@ -25,4 +25,4 @@ jobs:
           git config user.email "github-actions@users.noreply.github.com"
           git add profile/*.svg
           git commit -m "Update README cards" || exit 0
-          git push
+          git push https://github-actions:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git
