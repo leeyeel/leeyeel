@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Generate GitHub Stats Card
-        uses: stats-organization/github-readme-stats-action@v0.9.1
+        uses: anuraghazra/github-readme-stats@latest
         with:
           token: ${{ secrets.GH_TOKEN }}  # 从 GitHub Secrets 获取 Token
           stats_card: true
