@@ -1,5 +1,5 @@
 <a href="https://blog.whatsroot.xyz">
-  <img align="right" src="./stats.svg" />
+  <img align="right" src="./profile/stats.svg" />
 </a>
 
 - 💻 Full-stack engineer with expertise in audio/video codecs 
