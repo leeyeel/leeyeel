@@ -1,0 +1,93 @@
+import { readFile, writeFile } from "node:fs/promises";
+
+const token = process.env.GH_TOKEN;
+const username = process.env.GITHUB_USERNAME;
+const svgPath = process.env.STATS_SVG_PATH || "profile/stats.svg";
+const graphqlEndpoint =
+  process.env.GITHUB_GRAPHQL_URL || "https://api.github.com/graphql";
+
+if (!token) {
+  throw new Error(
+    "GH_TOKEN is required. Use a classic PAT with repo and read:user scopes.",
+  );
+}
+
+if (!username) {
+  throw new Error("GITHUB_USERNAME is required.");
+}
+
+const query = `
+  query UserContributions($login: String!) {
+    user(login: $login) {
+      contributionsCollection {
+        totalCommitContributions
+        restrictedContributionsCount
+      }
+    }
+  }
+`;
+
+const response = await fetch(graphqlEndpoint, {
+  method: "POST",
+  headers: {
+    Authorization: `bearer ${token}`,
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    query,
+    variables: { login: username },
+  }),
+});
+
+if (!response.ok) {
+  throw new Error(`GitHub GraphQL request failed with HTTP ${response.status}.`);
+}
+
+const payload = await response.json();
+if (payload.errors?.length) {
+  throw new Error(
+    `GitHub GraphQL request failed: ${payload.errors
+      .map((error) => error.message)
+      .join("; ")}`,
+  );
+}
+
+const contributions = payload.data?.user?.contributionsCollection;
+if (!contributions) {
+  throw new Error("GitHub GraphQL response did not contain contributions.");
+}
+
+const publicCommits = contributions.totalCommitContributions;
+const restrictedContributions = contributions.restrictedContributionsCount;
+const totalCommits = publicCommits + restrictedContributions;
+
+if (
+  !Number.isInteger(publicCommits) ||
+  !Number.isInteger(restrictedContributions) ||
+  !Number.isInteger(totalCommits)
+) {
+  throw new Error("GitHub GraphQL response contained an invalid commit count.");
+}
+
+let svg = await readFile(svgPath, "utf8");
+const commitValuePattern =
+  /(<text[^>]*data-testid="commits"[^>]*>\s*)[^<]*(\s*<\/text>)/;
+const updatedSvg = svg.replace(
+  commitValuePattern,
+  `$1${totalCommits}$2`,
+);
+
+if (updatedSvg === svg) {
+  throw new Error(`Could not find the commits value in ${svgPath}.`);
+}
+
+svg = updatedSvg;
+const descriptionPattern = /(Total Commits\s+\(last year\)\s*:\s*)\d+/;
+if (descriptionPattern.test(svg)) {
+  svg = svg.replace(descriptionPattern, `$1${totalCommits}`);
+}
+
+await writeFile(svgPath, svg, "utf8");
+console.log(
+  `Included restricted contributions: ${restrictedContributions}. Total commits: ${totalCommits}`,
+);
