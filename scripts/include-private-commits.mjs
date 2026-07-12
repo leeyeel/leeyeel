@@ -84,6 +84,31 @@ for (const pattern of commitValuePatterns) {
 }
 
 if (updatedSvg === svg) {
+  const textNodes = [...svg.matchAll(/<text\b[^>]*>[^<]*<\/text>/g)];
+  const normalizeText = (node) =>
+    node[0]
+      .replace(/^<text\b[^>]*>/, "")
+      .replace(/<\/text>$/, "")
+      .replace(/\s+/g, " ")
+      .trim();
+  const labelIndex = textNodes.findIndex(
+    (node) => normalizeText(node) === "Total Commits (last year):",
+  );
+  const valueNode = textNodes[labelIndex + 1];
+
+  if (labelIndex >= 0 && valueNode) {
+    const replacedNode = valueNode[0].replace(
+      /(>\s*)[^<]*(\s*<\/text>)$/,
+      `$1${totalCommits}$2`,
+    );
+    updatedSvg =
+      svg.slice(0, valueNode.index) +
+      replacedNode +
+      svg.slice(valueNode.index + valueNode[0].length);
+  }
+}
+
+if (updatedSvg === svg) {
   const cardText = [...svg.matchAll(/<text[^>]*>([^<]*)<\/text>/g)]
     .map((match) => match[1].replace(/\s+/g, " ").trim())
     .filter(Boolean)
