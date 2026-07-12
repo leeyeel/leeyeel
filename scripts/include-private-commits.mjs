@@ -70,15 +70,29 @@ if (
 }
 
 let svg = await readFile(svgPath, "utf8");
-const commitValuePattern =
-  /(<text[^>]*data-testid="commits"[^>]*>\s*)[^<]*(\s*<\/text>)/;
-const updatedSvg = svg.replace(
-  commitValuePattern,
-  `$1${totalCommits}$2`,
-);
+const commitValuePatterns = [
+  /(<text[^>]*data-testid=["']commits["'][^>]*>\s*)[^<]*(\s*<\/text>)/,
+  /(<text[^>]*>\s*Total Commits\s+\(last year\)\s*:\s*<\/text>\s*<text[^>]*>\s*)[^<]*(\s*<\/text>)/,
+];
+
+let updatedSvg = svg;
+for (const pattern of commitValuePatterns) {
+  updatedSvg = svg.replace(pattern, `$1${totalCommits}$2`);
+  if (updatedSvg !== svg) {
+    break;
+  }
+}
 
 if (updatedSvg === svg) {
-  throw new Error(`Could not find the commits value in ${svgPath}.`);
+  const cardText = [...svg.matchAll(/<text[^>]*>([^<]*)<\/text>/g)]
+    .map((match) => match[1].replace(/\s+/g, " ").trim())
+    .filter(Boolean)
+    .join(" | ");
+  throw new Error(
+    `Stats action did not generate a normal stats card${
+      cardText ? `: ${cardText}` : "."
+    }`,
+  );
 }
 
 svg = updatedSvg;
