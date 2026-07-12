@@ -76,14 +76,16 @@ const commitValuePatterns = [
 ];
 
 let updatedSvg = svg;
+let valueFound = false;
 for (const pattern of commitValuePatterns) {
-  updatedSvg = svg.replace(pattern, `$1${totalCommits}$2`);
-  if (updatedSvg !== svg) {
+  if (pattern.test(svg)) {
+    updatedSvg = svg.replace(pattern, `$1${totalCommits}$2`);
+    valueFound = true;
     break;
   }
 }
 
-if (updatedSvg === svg) {
+if (!valueFound) {
   const commitLabel = "Total Commits (last year):";
   let searchFrom = 0;
   let labelEnd = -1;
@@ -123,11 +125,12 @@ if (updatedSvg === svg) {
         svg.slice(0, valueOffset) +
         replacedNode +
         svg.slice(valueOffset + valueNode.length);
+      valueFound = true;
     }
   }
 }
 
-if (updatedSvg === svg) {
+if (!valueFound) {
   const cardText = [...svg.matchAll(/<text[^>]*>([^<]*)<\/text>/g)]
     .map((match) => match[1].replace(/\s+/g, " ").trim())
     .filter(Boolean)
