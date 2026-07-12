@@ -84,27 +84,46 @@ for (const pattern of commitValuePatterns) {
 }
 
 if (updatedSvg === svg) {
-  const textNodes = [...svg.matchAll(/<text\b[^>]*>[^<]*<\/text>/g)];
-  const normalizeText = (node) =>
-    node[0]
-      .replace(/^<text\b[^>]*>/, "")
-      .replace(/<\/text>$/, "")
-      .replace(/\s+/g, " ")
-      .trim();
-  const labelIndex = textNodes.findIndex(
-    (node) => normalizeText(node) === "Total Commits (last year):",
-  );
-  const valueNode = textNodes[labelIndex + 1];
+  const commitLabel = "Total Commits (last year):";
+  let searchFrom = 0;
+  let labelEnd = -1;
+  while (true) {
+    const labelIndex = svg.indexOf(commitLabel, searchFrom);
+    if (labelIndex < 0) {
+      break;
+    }
 
-  if (labelIndex >= 0 && valueNode) {
-    const replacedNode = valueNode[0].replace(
-      /(>\s*)[^<]*(\s*<\/text>)$/,
-      `$1${totalCommits}$2`,
-    );
-    updatedSvg =
-      svg.slice(0, valueNode.index) +
-      replacedNode +
-      svg.slice(valueNode.index + valueNode[0].length);
+    const candidateEnd = svg.indexOf("</text>", labelIndex);
+    if (candidateEnd >= 0 && candidateEnd - labelIndex < 200) {
+      labelEnd = candidateEnd + "</text>".length;
+      break;
+    }
+    searchFrom = labelIndex + commitLabel.length;
+  }
+
+  if (labelEnd >= 0) {
+    const valueMatch = svg
+      .slice(labelEnd)
+      .match(/<text\b[^>]*>\s*[0-9][0-9,.]*[kKmM]?\s*<\/text>/);
+    if (valueMatch?.index !== undefined) {
+      const valueOffset = labelEnd + valueMatch.index;
+      const valueNode = valueMatch[0];
+      const openEnd = valueNode.indexOf(">");
+      const closeStart = valueNode.lastIndexOf("</text>");
+      const inner = valueNode.slice(openEnd + 1, closeStart);
+      const leadingWhitespace = inner.match(/^\s*/)?.[0] || "";
+      const trailingWhitespace = inner.match(/\s*$/)?.[0] || "";
+      const replacedNode =
+        valueNode.slice(0, openEnd + 1) +
+        leadingWhitespace +
+        totalCommits +
+        trailingWhitespace +
+        valueNode.slice(closeStart);
+      updatedSvg =
+        svg.slice(0, valueOffset) +
+        replacedNode +
+        svg.slice(valueOffset + valueNode.length);
+    }
   }
 }
 
