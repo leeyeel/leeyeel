@@ -9,7 +9,7 @@
         aria-labelledby="descId"
       >
         <title id="titleId">li.yao's GitHub Stats, Rank: A</title>
-        <desc id="descId">Total Stars Earned: 1252, Total Commits  (last year) : 1153, Total PRs: 65, Total Issues: 144, Contributed to (last year): 16</desc>
+        <desc id="descId">Total Stars Earned: 1251, Total Commits  (last year) : 1153, Total PRs: 65, Total Issues: 144, Contributed to (last year): 16</desc>
         <style>
           .header {
             font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
@@ -73,7 +73,7 @@
         stroke-dashoffset: 251.32741228718345;
       }
       to {
-        stroke-dashoffset: 48.86601813030811;
+        stroke-dashoffset: 48.868490994856806;
       }
     }
   
